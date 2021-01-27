@@ -2,6 +2,7 @@ DROP DATABASE IF EXISTS fitness_club;
 CREATE DATABASE fitness_club;
 USE fitness_club;
 
+
 DROP TABLE IF EXISTS users; -- таблица с данными пользователей
 CREATE TABLE users (
 	id SERIAL PRIMARY KEY COMMENT 'Является как id пользователя, так и номером клубной карты', 
@@ -13,6 +14,7 @@ CREATE TABLE users (
 	INDEX users_firstname_lastname_idx(firstname, lastname)
 )
 
+
 DROP TABLE IF EXISTS profiles; -- таблица с расширенными данными пользователей
 CREATE TABLE profiles (
 	user_id BIGINT UNSIGNED NOT NULL UNIQUE,
@@ -21,6 +23,7 @@ CREATE TABLE profiles (
 	photo_id BIGINT UNSIGNED NULL COMMENT 'id фотографии',
     created_at DATETIME DEFAULT NOW() COMMENT 'Дата создания профиля'
 );
+
 
 ALTER TABLE profiles ADD CONSTRAINT fk_user_id -- прописываем зависимость id профилей от id пользователей 
     FOREIGN KEY (user_id) REFERENCES users(id)
